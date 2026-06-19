@@ -476,3 +476,138 @@ build-resumeforge-ai-platform
    └─ index.ts
 
 ```
+```
+build-resumeforge-ai-platform
+├─ app
+│  ├─ api
+│  │  ├─ analyzer
+│  │  │  └─ resume
+│  │  │     └─ route.ts
+│  │  ├─ chat
+│  │  │  └─ route.ts
+│  │  ├─ contact
+│  │  │  └─ route.ts
+│  │  ├─ cover-letter
+│  │  │  ├─ generate
+│  │  │  │  └─ route.ts
+│  │  │  ├─ route.ts
+│  │  │  └─ [id]
+│  │  │     └─ route.ts
+│  │  ├─ matcher
+│  │  │  └─ job
+│  │  │     └─ route.ts
+│  │  ├─ resumes
+│  │  │  ├─ route.ts
+│  │  │  └─ [id]
+│  │  │     ├─ export
+│  │  │     │  └─ route.ts
+│  │  │     ├─ route.ts
+│  │  │     └─ versions
+│  │  │        ├─ route.ts
+│  │  │        └─ [versionId]
+│  │  │           └─ restore
+│  │  │              └─ route.ts
+│  │  ├─ themes
+│  │  │  └─ route.ts
+│  │  ├─ user
+│  │  │  └─ route.ts
+│  │  └─ webhooks
+│  │     └─ clerk
+│  │        └─ route.ts
+│  ├─ auth
+│  │  ├─ sign-in
+│  │  │  └─ [[...sign-in]]
+│  │  │     └─ page.tsx
+│  │  └─ sign-up
+│  │     └─ [[...sign-up]]
+│  │        └─ page.tsx
+│  ├─ contact
+│  │  └─ page.tsx
+│  ├─ dashboard
+│  │  ├─ analyzer
+│  │  │  └─ page.tsx
+│  │  ├─ chat
+│  │  │  └─ page.tsx
+│  │  ├─ cover-letters
+│  │  │  └─ page.tsx
+│  │  ├─ layout.tsx
+│  │  ├─ matcher
+│  │  │  └─ page.tsx
+│  │  ├─ page.tsx
+│  │  └─ templates
+│  │     └─ page.tsx
+│  ├─ editor
+│  │  └─ [id]
+│  │     ├─ layout.tsx
+│  │     └─ page.tsx
+│  ├─ globals.css
+│  ├─ layout.tsx
+│  ├─ page.tsx
+│  ├─ privacy
+│  │  └─ page.tsx
+│  └─ terms
+│     └─ page.tsx
+├─ ARCHITECTURE.md
+├─ components
+│  ├─ dashboard
+│  │  ├─ analytics
+│  │  │  └─ page.tsx
+│  │  ├─ settings
+│  │  │  └─ page.tsx
+│  │  ├─ sidebar.tsx
+│  │  └─ topbar.tsx
+│  ├─ editor
+│  │  ├─ editor-panel.tsx
+│  │  ├─ resume-preview.tsx
+│  │  ├─ themes-panel.tsx
+│  │  └─ toolbar.tsx
+│  ├─ landing
+│  │  ├─ faq.tsx
+│  │  ├─ features.tsx
+│  │  ├─ footer.tsx
+│  │  ├─ header.tsx
+│  │  ├─ hero.tsx
+│  │  └─ pricing.tsx
+│  └─ ui
+│     └─ button.tsx
+├─ components.json
+├─ DEPLOYMENT.md
+├─ DOCS_INDEX.md
+├─ FEATURE_COMPARISON.md
+├─ IMPLEMENTATION_CHECKLIST.md
+├─ INTEGRATION_GUIDE.md
+├─ lib
+│  ├─ auth
+│  │  └─ clerk.ts
+│  ├─ services
+│  │  └─ sheets.ts
+│  ├─ utils
+│  │  └─ helpers.ts
+│  └─ utils.ts
+├─ middleware.ts
+├─ next-env.d.ts
+├─ next.config.mjs
+├─ package-lock.json
+├─ package.json
+├─ pnpm-lock.yaml
+├─ postcss.config.mjs
+├─ PREMIUM_BUILD_SUMMARY.md
+├─ PREMIUM_FEATURES.md
+├─ PROJECT_SUMMARY.md
+├─ public
+│  ├─ apple-icon.png
+│  ├─ icon-dark-32x32.png
+│  ├─ icon-light-32x32.png
+│  ├─ icon.svg
+│  ├─ placeholder-logo.png
+│  ├─ placeholder-logo.svg
+│  ├─ placeholder-user.jpg
+│  ├─ placeholder.jpg
+│  └─ placeholder.svg
+├─ README.md
+├─ setup.sh
+├─ tsconfig.json
+└─ types
+   └─ index.ts
+
+```
