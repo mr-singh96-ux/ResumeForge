@@ -9,6 +9,10 @@ const menuItems = [
   { icon: FileText, label: 'My Resumes', href: '/dashboard' },
   { icon: Layout, label: 'Templates', href: '/dashboard/templates' },
   { icon: BarChart3, label: 'Analytics', href: '/dashboard/analytics' },
+  { icon: BarChart3, label: 'Resume Analyzer', href: '/dashboard/analyzer' },
+  { icon: BarChart3, label: 'Job Matcher', href: '/dashboard/matcher' },
+  { icon: BarChart3, label: 'AI Chat', href: '/dashboard/chat' },
+  { icon: BarChart3, label: 'Cover Letters', href: '/dashboard/cover-letters' },
   { icon: Settings, label: 'Settings', href: '/dashboard/settings' },
 ];
 
@@ -49,13 +53,9 @@ export function Sidebar() {
 
       <div className="p-4 border-t border-slate-200 dark:border-slate-800">
         <UserButton
-          afterSignOutUrl="/"
-          appearance={{
-            elements: {
-              avatarBox: 'w-10 h-10',
-            },
-          }}
-        />
+  userProfileMode="navigation"
+  userProfileUrl="/dashboard/profile"
+/>
       </div>
     </aside>
   );
