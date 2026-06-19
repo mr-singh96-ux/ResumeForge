@@ -2,17 +2,19 @@ import { auth } from '@clerk/nextjs/server';
 import { sheetsService } from '@/lib/services/sheets';
 import jsPDF from 'jspdf';
 
+export const runtime = 'nodejs';
 export async function POST(
   req: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await context.params;
   try {
     const { userId } = await auth();
     if (!userId) {
       return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
     }
 
-    const resume = await sheetsService.getResume(params.id);
+    const resume = await sheetsService.getResume(id);
     if (!resume) {
       return new Response(JSON.stringify({ error: 'Resume not found' }), { status: 404 });
     }
@@ -40,7 +42,7 @@ export async function POST(
     // Record download
     await sheetsService.recordDownload({
       userId,
-      resumeId: params.id,
+      resumeId: id,
       format: format as 'pdf' | 'docx',
     });
 
@@ -57,7 +59,7 @@ export async function POST(
   }
 }
 
-function generatePDF(resume: any) {
+async function generatePDF(resume: any) {
   try {
     const doc = new jsPDF();
     const { content } = resume;
@@ -204,15 +206,16 @@ function generatePDF(resume: any) {
     }
 
     // Generate PDF as blob
-    const pdfBlob = doc.output('blob');
-    const buffer = Buffer.from(await pdfBlob.arrayBuffer());
+    // Generate PDF as ArrayBuffer (works on Vercel)
+const pdfArrayBuffer = doc.output('arraybuffer');
 
-    return new Response(buffer, {
-      headers: {
-        'Content-Type': 'application/pdf',
-        'Content-Disposition': `attachment; filename="${resume.title}.pdf"`,
-      },
-    });
+return new Response(Buffer.from(pdfArrayBuffer), {
+  headers: {
+    'Content-Type': 'application/pdf',
+    'Content-Disposition': `attachment; filename="${resume.title}.pdf"`,
+    'Cache-Control': 'no-store',
+  },
+});
   } catch (error) {
     console.error('[PDF] Error generating PDF:', error);
     throw error;
