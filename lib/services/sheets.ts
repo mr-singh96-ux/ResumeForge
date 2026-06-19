@@ -32,31 +32,31 @@ class SheetsService {
   private baseURL = SHEETS_API_URL;
 
   async request<T>(
-    endpoint: string,
-    method: 'GET' | 'POST' | 'PUT' | 'DELETE' = 'GET',
-    data?: any
-  ): Promise<T> {
-    try {
-      const url = `${this.baseURL}?action=${endpoint}`;
-      const response = await axios({
-        method,
-        url,
-        data,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+  endpoint: string,
+  method: 'GET' | 'POST' | 'PUT' | 'DELETE' = 'GET',
+  data?: any
+): Promise<T> {
+  try {
+    const url = `${this.baseURL}?action=${endpoint}`;
 
-      if (!response.data.success) {
-        throw new Error(response.data.error || 'Request failed');
-      }
+    const response =
+      method === 'GET'
+        ? await axios.get(url)
+        : await axios.post(url, {
+            action: endpoint,
+            ...data,
+          });
 
-      return response.data.data;
-    } catch (error) {
-      console.error('[Sheets] Error:', error);
-      throw error;
+    if (!response.data.success) {
+      throw new Error(response.data.error || 'Request failed');
     }
+
+    return response.data.data;
+  } catch (error) {
+    console.error('[Sheets] Error:', error);
+    throw error;
   }
+}
 
   // User operations
   async createUser(user: Omit<User, 'id' | 'createdAt' | 'updatedAt'>): Promise<User> {
